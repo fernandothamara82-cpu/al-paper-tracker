@@ -1,0 +1,5 @@
+{
+  "name": "AL Paper Tracker",
+  "description": "A specialized dashboard for A/L Maths students to track daily progress in Physics, Chemistry, and Combined Mathematics papers with visual analytics and AI-powered study advice.",
+  "requestFramePermissions": []
+}
