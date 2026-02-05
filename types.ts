@@ -66,3 +66,21 @@ export const SUBJECT_METADATA: Record<SubjectId, SubjectMetadata> = {
     ]
   }
 };
+
+
+export type MCQSubject = 'physics' | 'chemistry';
+
+export interface MCQQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctOptionIndex: number;
+  explanation: string;
+}
+
+export interface MCQGenerationRequest {
+  subject: MCQSubject;
+  questionCount: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  sourceText?: string;
+}

@@ -6,6 +6,7 @@ import Analytics from './components/Analytics';
 import TodoList from './components/TodoList';
 import StudyTimer from './components/StudyTimer';
 import GoalsManager from './components/GoalsManager';
+import MCQPlatform from './components/MCQPlatform';
 import { getStudyAdvice } from './services/geminiService';
 
 const App: React.FC = () => {
@@ -13,7 +14,7 @@ const App: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [goals, setGoals] = useState<StudyGoal[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-  const [activeTab, setActiveTab] = useState<'log' | 'charts' | 'goals'>('log');
+  const [activeTab, setActiveTab] = useState<'log' | 'charts' | 'goals' | 'mcq'>('log');
   const [advice, setAdvice] = useState<string>('');
   const [loadingAdvice, setLoadingAdvice] = useState(false);
 
@@ -95,8 +96,8 @@ const App: React.FC = () => {
               <i className="fa-solid fa-graduation-cap text-xl"></i>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight">AL Paper Tracker</h1>
-              <p className="text-xs text-slate-500 font-medium">Maths Stream Specialist</p>
+              <h1 className="text-xl font-bold text-slate-900 tracking-tight">AL Paper & MCQ Platform</h1>
+              <p className="text-xs text-slate-500 font-medium">Sinhala Physics & Chemistry MCQ + Tracker</p>
             </div>
           </div>
           
@@ -125,6 +126,14 @@ const App: React.FC = () => {
             >
               Goals
             </button>
+            <button
+              onClick={() => setActiveTab('mcq')}
+              className={`px-4 md:px-6 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+                activeTab === 'mcq' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500'
+              }`}
+            >
+              MCQ Studio
+            </button>
           </div>
         </div>
       </header>
@@ -150,6 +159,7 @@ const App: React.FC = () => {
           )}
           {activeTab === 'charts' && <Analytics entries={entries} />}
           {activeTab === 'goals' && <GoalsManager entries={entries} goals={goals} onAddGoal={handleAddGoal} onDeleteGoal={handleDeleteGoal} />}
+          {activeTab === 'mcq' && <MCQPlatform />}
         </div>
 
         <div className="lg:col-span-4 space-y-6">
